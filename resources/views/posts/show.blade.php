@@ -1,7 +1,7 @@
-@extends('layouts.app);
+@extends('layouts.app')
 
 @section('content')
-    <a href="/lsapp/posts" class="btn btn-default">Go back</a>
+    <a href="{{url('posts')}}" class="btn btn-default">Go back</a>
     <h1>{{$post->title}}}</h1>
     <div>
         {{$post->body}}}
