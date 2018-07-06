@@ -14,3 +14,5 @@ php artisan migrate
 php artisan tinker
 
 php artisan route:list
+
+php artisan make:auth
