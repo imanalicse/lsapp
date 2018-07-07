@@ -24,4 +24,13 @@ class PagesController extends Controller
 
         return view('pages.services')->with($data);
     }
+
+    public function ajaxRequest() {    
+       echo 'Hello ajax get request';     
+    }
+
+    public function ajaxPostRequest(Request $request) {
+        $data = $request->all();                
+        print_r($data);
+    }
 }

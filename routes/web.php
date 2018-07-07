@@ -27,6 +27,9 @@ Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
 
+Route::get('/ajaxRequest', 'PagesController@ajaxRequest');
+Route::post('/ajaxPostRequest', 'PagesController@ajaxPostRequest');
+
 Route::resource('posts', 'PostsController');
 Auth::routes();
 
