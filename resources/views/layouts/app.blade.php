@@ -26,10 +26,12 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 
-    {{-- <script src="{{url('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
+    <script src="{{url('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
     <script>
-        CKEDITOR.replace( 'article-ckeditor' );
-    </script> --}}
+        if(jQuery("#article-ckeditor").length > 0) {
+            CKEDITOR.replace( 'article-ckeditor' );
+        }
+    </script>
     
 </body>
 </html>
