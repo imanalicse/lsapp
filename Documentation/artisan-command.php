@@ -16,3 +16,8 @@ php artisan tinker
 php artisan route:list
 
 php artisan make:auth
+
+<!-- for error 
+In ClassLoader.php line 440:
+ -->
+composer dumpautoload

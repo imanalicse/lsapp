@@ -29,7 +29,7 @@ Route::get('/services', 'PagesController@services');
 
 Route::get('/ajaxRequest', 'PagesController@ajaxRequest');
 Route::post('/ajaxPostRequest', 'PagesController@ajaxPostRequest');
-
+Route::resource('categories', 'CategoriesController');
 Route::resource('posts', 'PostsController');
 Auth::routes();
 
