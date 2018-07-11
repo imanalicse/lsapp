@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
+use App\Category;
 //use DB;
 
 class PostsController extends Controller
@@ -44,7 +45,9 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view("posts.create");
+        $categories = Category::all();
+        
+        return view("posts.create")->with('categories', $categories);        
     }
 
     /**
@@ -55,6 +58,11 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        // echo '<pre>';
+        // print_r($request->all());
+        // echo '</pre>';
+        // die();
+
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',

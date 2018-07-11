@@ -14,6 +14,15 @@
         </div>
 
         <div class="form-group">
+        @if(count($categories) > 0)        
+            @foreach($categories as $category)                
+            {{ Form::checkbox('categories[]', $category->id) }}
+            {{$category->name}}   
+            @endforeach
+        @endif
+        </div>
+
+        <div class="form-group">
             {{Form::file('cover_image')}}
         </div>
         
