@@ -13,8 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    
+                    <a href="{{url('categories')}}" class="btn btn-primary">Categroies</a>
+                    
                     <a href="{{url('posts/create')}}" class="btn btn-primary">Create Post</a>
+
                     <h3>Your blog posts</h3>
                     @if(count($posts) > 0)
                     <table class="table table-striped">
