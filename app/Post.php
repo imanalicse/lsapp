@@ -17,4 +17,9 @@ class Post extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function categogires() 
+    {
+         return $this->belongsToMany('App\category');
+    }
 }
