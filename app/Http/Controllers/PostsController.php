@@ -58,11 +58,6 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        // echo '<pre>';
-        // print_r($request->all());
-        // echo '</pre>';
-        // die();
-
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
@@ -70,10 +65,7 @@ class PostsController extends Controller
         ]);
         
         if($request->hasFile('cover_image')) {
-            // echo '<pre>';
-            // echo print_r(get_class_methods($request->file('cover_image')));
-            // echo '</pre>';
-            // die();
+
             $fileNameWithExt = $request->file('cover_image')->getClientOriginalName();    
             //Get only file name
             $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -94,6 +86,12 @@ class PostsController extends Controller
         $post->user_id = auth()->user()->id;
         $post->cover_image = $fileNameToStore;
         $post->save();
+
+        if($request->input('categories')) {
+            $categories = $request->input('categories');
+            $category = Category::find($categories);
+            $post->categories()->attach($category);
+        }        
 
         return redirect('/posts')->with('success', 'Post created');
     }
@@ -119,13 +117,14 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        $categories = Category::all();
 
         // Check for correct user
         if(auth()->user()->id !== $post->user_id) {
             return redirect('/posts')->with('error', 'Unauthorized page');
-        }
+        }  
 
-        return view('posts.edit')->with('post', $post);
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -141,7 +140,6 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'required'
         ]);
-
 
         $post = Post::find($id);
         
@@ -167,8 +165,15 @@ class PostsController extends Controller
         if($request->hasFile('cover_image')) {
             $post->cover_image = $fileNameToStore;
         }
+
         $post->save();
 
+        if($request->input('categories')) {
+            $category_ids = $request->input('categories');
+            $category = Category::find($category_ids);
+            $post->categories()->attach($category);
+        }    
+        
         return redirect('/posts')->with('success', 'Post updated');
     }
 

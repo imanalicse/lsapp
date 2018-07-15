@@ -15,6 +15,21 @@
             {{Form::file('cover_image')}}
         </div>
 
+        <div class="form-group">
+        @if(count($categories) > 0)        
+            @foreach($categories as $category)    
+            <?php $checked = false; ?>
+            @foreach($post->categories as $p_cat)
+                @if($category->id === $p_cat->id)                    
+                    <?php $checked = true; ?>
+                @endif
+            @endforeach          
+            {{ Form::checkbox('categories[]', $category->id, $checked) }}
+            {{$category->name}}   
+            @endforeach
+        @endif
+        </div>
+
         {{Form::hidden('_method', 'PUT')}}
         {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
         
