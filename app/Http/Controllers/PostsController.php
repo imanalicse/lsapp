@@ -171,6 +171,7 @@ class PostsController extends Controller
         if($request->input('categories')) {
             $category_ids = $request->input('categories');
             $category = Category::find($category_ids);
+            $post->categories()->detach($post->categories);
             $post->categories()->attach($category);
         }    
         
