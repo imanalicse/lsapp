@@ -9,7 +9,14 @@
         {!!$post->body!!}
     </div>
     <hr>
-    <small> Written on {{$post->created_at}}  by {{$post->user->name}}</small>    
+    <small> Written on {{$post->created_at}}  by {{$post->user->name}}
+        @if(count($post->categories) > 0)
+            |
+            @foreach($post->categories as $category)
+            <a href="{{url('categories/'.$category->id)}}"> {{$category->name}}, </a>
+            @endforeach
+        @endif
+    </small>    
     <hr>
     @if(!Auth::guest())
         @if(Auth::user()->id == $post->user_id)

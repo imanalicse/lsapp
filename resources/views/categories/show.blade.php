@@ -4,7 +4,14 @@
     <a href="{{url('categories')}}" class="btn btn-default">Go back</a>
     <h1>{{$category->name}}</h1>
     <hr>
-    <small> Written on {{$category->created_at}}</small>    
+    <small> Written on {{$category->created_at}}
+        @if(count($category->posts) > 0)
+            |
+            @foreach($category->posts as $post)
+                <a href="{{url('/posts/'.$post->id)}}">{{$post->title}},
+            @endforeach
+        @endif
+    </small>    
     <hr>
     @if(!Auth::guest())
         

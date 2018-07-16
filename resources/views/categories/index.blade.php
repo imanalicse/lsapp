@@ -9,7 +9,14 @@
         @foreach($categories as $category)
             <div class="well">    
                 <h3><a href="{{url('/categories/'.$category->id)}}">{{$category->name}}</a></h3>
-                <small>Written on {{$category->created_at}}</small>        
+                <small>Written on {{$category->created_at}}
+                @if(count($category->posts) > 0)
+                    |
+                    @foreach($category->posts as $post)
+                        <a href="{{url('posts/'.$post->id)}}"> {{$post->title}},   
+                    @endforeach
+                @endif
+                </small>        
             </div>
         @endforeach
     @else
