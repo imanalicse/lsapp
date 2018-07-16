@@ -16,7 +16,7 @@
                             @if(count($post->categories) > 0)
                                 |
                                 @foreach($post->categories as $category)
-                                <a href="{{url('category/'.$category->id)}}"> {{$category->name}}, </a>
+                                <a href="{{url('categories/'.$category->id)}}"> {{$category->name}}, </a>
                                 @endforeach
                             @endif
                         </small>
