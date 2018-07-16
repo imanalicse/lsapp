@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             'title' => 'Hello World',
             'user_id' => 1,
             'body' => '<strong>Hello world content</strong> Hello world content Hello world content Hello world content Hello world content ',            
+            'created_at' => date('Y-m-d H:m:s'),
+            'updated_at' => date('Y-m-d H:m:s')
         ]);
 
         DB::table('categories')->insert([
